@@ -25,45 +25,37 @@
             color: #333;
             overflow: hidden;
         }
-
+        
         .container {
-            background-color: rgba(235, 245, 255, 0.65); /* very light blue, almost white, slightly transparent */
+            background-color: rgba(230, 245, 255, 0.9); /* Light blue 🩵 */
             border-radius: 20px;
-            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.2);
+            box-shadow: 0 15px 40px rgba(100, 181, 246, 0.3);
             padding: 40px;
             text-align: center;
             max-width: 550px;
             width: 100%;
             position: relative;
             overflow: hidden;
-            animation: floating 12s ease-in-out infinite, bounce 3.2s cubic-bezier(.28,.84,.42,1) infinite;
+            animation: floating 12s ease-in-out infinite;
             backdrop-filter: blur(8px);
-            border: 1px solid rgba(255, 255, 255, 0.4);
-            will-change: transform;
+            border: 1px solid rgba(179, 229, 252, 0.6);
         }
-
+        
         @keyframes floating {
-            0%   { transform: translateY(0px) rotate(0deg); }
-            50%  { transform: translateY(-15px) rotate(0.5deg); }
-            100% { transform: translateY(0px) rotate(0deg); }
-        }
-
-        @keyframes bounce {
-            0%   { transform: translateY(0); }
-            40%  { transform: translateY(-10px); }
-            60%  { transform: translateY(2px); }
-            100% { transform: translateY(0); }
+            0% { transform: translate(0, 0px) rotate(0deg); }
+            50% { transform: translate(0, -15px) rotate(0.5deg); }
+            100% { transform: translate(0, 0px) rotate(0deg); }
         }
         
         h1 {
-            color: #ff6b6b;
+            color: #4a89dc;
             margin-bottom: 30px;
             font-size: 2.5rem;
             text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
         }
         
         .heart {
-            color: #ff6b6b;
+            color: #e91e63;
             display: inline-block;
             animation: pulse 1.5s infinite;
         }
@@ -77,14 +69,14 @@
         .question-container {
             margin: 30px 0;
             padding: 20px;
-            background-color: rgba(248, 249, 250, 0.7);
+            background-color: rgba(225, 245, 254, 0.8); /* Lighter blue */
             border-radius: 15px;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 5px 15px rgba(100, 181, 246, 0.2);
         }
         
         .question {
             font-size: 1.5rem;
-            color: #ff6b6b;
+            color: #4a89dc;
             margin-bottom: 25px;
             font-weight: 600;
         }
@@ -144,7 +136,7 @@
         
         .progress-bar {
             height: 10px;
-            background-color: rgba(233, 236, 239, 0.7);
+            background-color: rgba(207, 216, 220, 0.7);
             border-radius: 5px;
             margin: 30px 0;
             overflow: hidden;
@@ -152,7 +144,7 @@
         
         .progress {
             height: 100%;
-            background: linear-gradient(to right, #ff6b6b, #ff9e6b);
+            background: linear-gradient(to right, #4a89dc, #5c97e0);
             width: 0%;
             transition: width 0.5s ease;
         }
@@ -160,9 +152,10 @@
         .message {
             margin-top: 40px;
             padding: 20px;
-            background-color: rgba(248, 249, 250, 0.7);
+            background-color: rgba(232, 245, 253, 0.9);
             border-radius: 15px;
             display: none;
+            animation: floating 10s ease-in-out infinite;
         }
         
         .message h2 {
@@ -179,7 +172,7 @@
             position: absolute;
             width: 10px;
             height: 10px;
-            background-color: #ff6b6b;
+            background-color: #4a89dc;
             opacity: 0;
             z-index: 5;
         }
@@ -187,36 +180,38 @@
         .response-summary {
             margin-top: 30px;
             padding: 20px;
-            background-color: rgba(240, 248, 255, 0.7);
+            background-color: rgba(227, 242, 253, 0.9);
             border-radius: 15px;
             display: none;
             text-align: left;
+            animation: floating 11s ease-in-out infinite;
         }
         
         .response-summary h3 {
-            color: #2196F3;
+            color: #4a89dc;
             margin-bottom: 15px;
         }
         
         .response-item {
             margin-bottom: 10px;
             padding: 10px;
-            background-color: rgba(255, 255, 255, 0.8);
+            background-color: rgba(255, 255, 255, 0.9);
             border-radius: 8px;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            box-shadow: 0 2px 5px rgba(100, 181, 246, 0.2);
         }
         
         .email-form {
             margin-top: 20px;
             padding: 20px;
-            background-color: rgba(255, 244, 230, 0.7);
+            background-color: rgba(255, 248, 225, 0.9);
             border-radius: 15px;
             display: none;
             text-align: left;
+            animation: floating 9s ease-in-out infinite;
         }
         
         .email-form h3 {
-            color: #e67700;
+            color: #ff9800;
             margin-bottom: 15px;
         }
         
@@ -236,11 +231,11 @@
             border: 1px solid #ccc;
             border-radius: 5px;
             font-size: 1rem;
-            background-color: rgba(255, 255, 255, 0.8);
+            background-color: rgba(255, 255, 255, 0.9);
         }
         
         .submit-btn {
-            background-color: #e67700;
+            background-color: #ff9800;
             color: white;
             padding: 12px 25px;
             border: none;
@@ -251,7 +246,7 @@
         }
         
         .submit-btn:hover {
-            background-color: #ff8c1a;
+            background-color: #f57c00;
         }
         
         .email-status {
@@ -286,7 +281,7 @@
         .floating-heart {
             position: absolute;
             font-size: 2rem;
-            color: #ff6b6b;
+            color: #4a89dc;
             opacity: 0.7;
             animation: floatAround 15s linear infinite;
         }
@@ -457,13 +452,6 @@
             const responsesList = document.getElementById('responses-list');
             const emailForm = document.getElementById('email-form');
             
-            // Stop the bouncing animation
-            document.querySelector('.container').style.animation = 'none';
-            
-            // Center the container
-            document.querySelector('.container').style.position = 'relative';
-            document.querySelector('.container').style.margin = '0 auto';
-            
             // Hide question container
             questionContainer.style.display = 'none';
             
@@ -516,7 +504,7 @@
         // Function to create confetti effect
         function createConfetti() {
             const container = document.querySelector('.container');
-            const colors = ['#ff6b6b', '#4CAF50', '#ffc107', '#2196F3', '#9c27b0'];
+            const colors = ['#4a89dc', '#4CAF50', '#ffc107', '#2196F3', '#9c27b0'];
             
             for (let i = 0; i < 50; i++) {
                 const confetti = document.createElement('div');
