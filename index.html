@@ -540,64 +540,34 @@
             }
         }
         
-       <script>
-    // Send email with responses
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/emailjs-com@2/dist/email.min.js"></script>
+<script>
+    (function(){
+        emailjs.init("YOUR_USER_ID"); // from emailjs dashboard
+    })();
+
     function sendEmail() {
         const userName = document.getElementById('user-name').value.trim();
         const userEmail = document.getElementById('user-email').value.trim();
-        const emailStatus = document.getElementById('email-status');
 
-        // Validate inputs
         if (!userName || !userEmail) {
-            emailStatus.textContent = "Please enter both your name and email.";
-            emailStatus.className = "email-status error";
-            emailStatus.style.display = "block";
+            alert("Please enter both name and email.");
             return;
         }
 
-        if (!isValidEmail(userEmail)) {
-            emailStatus.textContent = "Please enter a valid email address.";
-            emailStatus.className = "email-status error";
-            emailStatus.style.display = "block";
-            return;
-        }
+        const templateParams = {
+            name: userName,
+            email: userEmail,
+            responses: JSON.stringify(responses, null, 2) // pass all Q&A
+        };
 
-        // Prepare email content
-        let emailBody = `Amaka's Responses:\n\n`;
-        responses.forEach(response => {
-            emailBody += `Question: ${response.question}\n`;
-            emailBody += `Answer: ${response.answer}\n`;
-            emailBody += `Time: ${response.timestamp}\n\n`;
-        });
-
-        emailBody += `Sent from: ${userName} (${userEmail})`;
-
-        // Encode subject & body safely
-        const subject = encodeURIComponent("Amaka's Response to Your Questions");
-        const body = encodeURIComponent(emailBody);
-
-        // Create mailto link
-        const mailtoLink = `mailto:chinazorogoke@gmail.com?subject=${subject}&body=${body}`;
-
-        // Open email client
-        window.location.href = mailtoLink;
-
-        // Show success message
-        emailStatus.textContent = "Thank you! Your responses have been sent.";
-        emailStatus.className = "email-status success";
-        emailStatus.style.display = "block";
-
-        // Hide the form after successful submission
-        document.getElementById('email-form').style.display = 'none';
+        emailjs.send("YOUR_SERVICE_ID", "YOUR_TEMPLATE_ID", templateParams)
+            .then(() => {
+                alert("Email sent successfully!");
+                document.getElementById('email-form').style.display = 'none';
+            }, (error) => {
+                alert("Failed to send email: " + JSON.stringify(error));
+            });
     }
-
-    // Validate email format
-    function isValidEmail(email) {
-        const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-        return re.test(email);
-    }
-
-    // Initialize the page
-    createFloatingHearts();
-    updateProgressBar();
 </script>
+
