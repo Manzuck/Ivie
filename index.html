@@ -13,85 +13,80 @@
         }
         
         body {
-            background: url('amaka.jpg');
-            background-size: cover;
-            background-position: center;
-            background-attachment: fixed;
-            min-height: 100vh;
-            overflow: hidden;
-            color: #333;
-        }
-        
-        .container {
-            background-color: rgba(255, 255, 255, 0.7);
-            border-radius: 20px;
-            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.2);
-            padding: 40px;
-            text-align: center;
-            max-width: 550px;
-            width: 90%;
-            position: absolute;
-            overflow: hidden;
-            animation: bounce 25s infinite alternate;
-            backdrop-filter: blur(5px);
-            border: 1px solid rgba(255, 255, 255, 0.3);
-        }
-        
-        @keyframes bounce {
-            0% { 
-                top: 5%; 
-                left: 5%; 
-            }
-            25% { 
-                top: 5%; 
-                left: calc(100% - 550px);
-            }
-            50% { 
-                top: calc(100% - 350px); 
-                left: calc(100% - 550px); 
-            }
-            75% { 
-                top: calc(100% - 350px); 
-                left: 5%; 
-            }
-            100% { 
-                top: 5%; 
-                left: 5%; 
-            }
-        }
-        
-        h1 {
-            color: #ff6b6b;
-            margin-bottom: 30px;
-            font-size: 2.5rem;
-            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
-        }
-        
-        .heart {
-            color: #ff6b6b;
-            display: inline-block;
-            animation: pulse 1.5s infinite;
-        }
-        
-        @keyframes pulse {
-            0% { transform: scale(1); }
-            50% { transform: scale(1.1); }
-            100% { transform: scale(1); }
-        }
-        
-        .question-container {
-            margin: 30px 0;
-            padding: 20px;
-            background-color: rgba(248, 249, 250, 0.8);
-            border-radius: 15px;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-        }
-        
-        .question {
-            font-size: 1.5rem;
-            color: #ff6b6b;
-            margin-bottom: 25px;
-            font-weight: 600;
+    background: url('amaka.jpg');
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    color: #333;
+    overflow: hidden;
+}
+
+.container {
+    background-color: rgba(235, 245, 255, 0.65); /* very light blue, almost white, slightly transparent */
+    border-radius: 20px;
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.2);
+    padding: 40px;
+    text-align: center;
+    max-width: 550px;
+    width: 100%;
+    position: relative;
+    overflow: hidden;
+    animation: floating 12s ease-in-out infinite, bounce 3.2s cubic-bezier(.28,.84,.42,1) infinite;
+    backdrop-filter: blur(8px);
+    border: 1px solid rgba(255, 255, 255, 0.4);
+    will-change: transform;
+}
+
+@keyframes floating {
+    0%   { transform: translateY(0px) rotate(0deg); }
+    50%  { transform: translateY(-15px) rotate(0.5deg); }
+    100% { transform: translateY(0px) rotate(0deg); }
+}
+
+@keyframes bounce {
+    0%   { transform: translateY(0); }
+    40%  { transform: translateY(-10px); }
+    60%  { transform: translateY(2px); }
+    100% { transform: translateY(0); }
+}
+
+h1 {
+    color: #ff6b6b;
+    margin-bottom: 30px;
+    font-size: 2.5rem;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.heart {
+    color: #ff6b6b;
+    display: inline-block;
+    animation: pulse 1.5s infinite;
+}
+
+@keyframes pulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.1); }
+    100% { transform: scale(1); }
+}
+
+.question-container {
+    margin: 30px 0;
+    padding: 20px;
+    background-color: rgba(248, 249, 250, 0.7);
+    border-radius: 15px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+.question {
+    font-size: 1.5rem;
+    color: #ff6b6b;
+    margin-bottom: 25px;
+    font-weight: 600;
         }
         
         .buttons {
@@ -165,9 +160,10 @@
         .message {
             margin-top: 40px;
             padding: 20px;
-            background-color: rgba(248, 249, 250, 0.9);
+            background-color: rgba(248, 249, 250, 0.7);
             border-radius: 15px;
             display: none;
+            animation: floating 10s ease-in-out infinite;
         }
         
         .message h2 {
@@ -192,10 +188,11 @@
         .response-summary {
             margin-top: 30px;
             padding: 20px;
-            background-color: rgba(240, 248, 255, 0.9);
+            background-color: rgba(240, 248, 255, 0.7);
             border-radius: 15px;
             display: none;
             text-align: left;
+            animation: floating 11s ease-in-out infinite;
         }
         
         .response-summary h3 {
@@ -214,10 +211,11 @@
         .email-form {
             margin-top: 20px;
             padding: 20px;
-            background-color: rgba(255, 244, 230, 0.9);
+            background-color: rgba(255, 244, 230, 0.7);
             border-radius: 15px;
             display: none;
             text-align: left;
+            animation: floating 9s ease-in-out infinite;
         }
         
         .email-form h3 {
@@ -303,30 +301,9 @@
             100% { transform: translate(100px, -100px) rotate(360deg); opacity: 0; }
         }
         
-        @media (max-width: 768px) {
+        @media (max-width: 600px) {
             .container {
-                width: 85%;
                 padding: 30px 20px;
-                animation: bounceMobile 20s infinite alternate;
-            }
-            
-            @keyframes bounceMobile {
-                0% { 
-                    top: 5%; 
-                    left: 5%; 
-                }
-                33% { 
-                    top: 5%; 
-                    left: calc(100% - 85%);
-                }
-                66% { 
-                    top: calc(100% - 400px); 
-                    left: calc(100% - 85%); 
-                }
-                100% { 
-                    top: calc(100% - 400px); 
-                    left: 5%; 
-                }
             }
             
             h1 {
@@ -483,14 +460,6 @@
             const responsesList = document.getElementById('responses-list');
             const emailForm = document.getElementById('email-form');
             
-            // Stop the bouncing animation
-            document.querySelector('.container').style.animation = 'none';
-            
-            // Center the container
-            document.querySelector('.container').style.top = '50%';
-            document.querySelector('.container').style.left = '50%';
-            document.querySelector('.container').style.transform = 'translate(-50%, -50%)';
-            
             // Hide question container
             questionContainer.style.display = 'none';
             
@@ -551,7 +520,7 @@
                 confetti.style.left = Math.random() * 100 + '%';
                 confetti.style.top = Math.random() * 100 + '%';
                 confetti.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
-                confetti.style.transform = `rotate(${Math.random() * 360)deg)`;
+                confetti.style.transform = `rotate(${Math.random() * 360}deg)`;
                 container.appendChild(confetti);
                 
                 // Animate confetti
