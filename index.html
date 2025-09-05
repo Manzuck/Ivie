@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Will You Be My Girlfriend?</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Arial', sans-serif;
+        }
+        
+        body {
+            background: linear-gradient(135deg, #ff9a9e 0%, #fad0c4 100%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+        
+        .container {
+            background-color: rgba(255, 255, 255, 0.9);
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+            padding: 40px;
+            text-align: center;
+            max-width: 500px;
+            width: 100%;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        h1 {
+            color: #ff6b6b;
+            margin-bottom: 30px;
+            font-size: 2.5rem;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+        }
+        
+        .heart {
+            color: #ff6b6b;
+            display: inline-block;
+            animation: pulse 1.5s infinite;
+        }
+        
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+            100% { transform: scale(1); }
+        }
+        
+        .buttons {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin-top: 30px;
+        }
+        
+        button {
+            padding: 15px 30px;
+            font-size: 1.2rem;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: bold;
+        }
+        
+        #yes-btn {
+            background-color: #4CAF50;
+            color: white;
+            box-shadow: 0 4px 15px rgba(76, 175, 80, 0.3);
+        }
+        
+        #yes-btn:hover {
+            background-color: #45a049;
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(76, 175, 80, 0.4);
+        }
+        
+        #no-btn {
+            background-color: #f44336;
+            color: white;
+            position: relative;
+            box-shadow: 0 4px 15px rgba(244, 67, 54, 0.3);
+        }
+        
+        #no-btn:hover {
+            background-color: #d32f2f;
+        }
+        
+        .message {
+            margin-top: 40px;
+            padding: 20px;
+            background-color: #f8f9fa;
+            border-radius: 15px;
+            display: none;
+        }
+        
+        .message h2 {
+            color: #4CAF50;
+            margin-bottom: 15px;
+        }
+        
+        .message p {
+            color: #555;
+            line-height: 1.6;
+        }
+        
+        .confetti {
+            position: absolute;
+            width: 10px;
+            height: 10px;
+            background-color: #ff6b6b;
+            opacity: 0;
+        }
+        
+        @media (max-width: 600px) {
+            .container {
+                padding: 30px 20px;
+            }
+            
+            h1 {
+                font-size: 2rem;
+            }
+            
+            .buttons {
+                flex-direction: column;
+                gap: 15px;
+            }
+            
+            button {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Amaka, will you be my girlfriend? <span class="heart">❤️</span></h1>
+        
+        <div class="buttons">
+            <button id="yes-btn">Yes</button>
+            <button id="no-btn">No</button>
+        </div>
+        
+        <div id="message" class="message">
+            <h2>Yay! You've made me the happiest person! 🎉</h2>
+            <p>I promise to always cherish and adore you. Looking forward to creating beautiful memories together!</p>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const yesBtn = document.getElementById('yes-btn');
+            const noBtn = document.getElementById('no-btn');
+            const message = document.getElementById('message');
+            
+            // Function to create confetti effect
+            function createConfetti() {
+                const container = document.querySelector('.container');
+                const colors = ['#ff6b6b', '#4CAF50', '#ffc107', '#2196F3', '#9c27b0'];
+                
+                for (let i = 0; i < 50; i++) {
+                    const confetti = document.createElement('div');
+                    confetti.className = 'confetti';
+                    confetti.style.left = Math.random() * 100 + '%';
+                    confetti.style.top = Math.random() * 100 + '%';
+                    confetti.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+                    confetti.style.transform = `rotate(${Math.random() * 360}deg)`;
+                    container.appendChild(confetti);
+                    
+                    // Animate confetti
+                    setTimeout(() => {
+                        confetti.style.transition = 'all 1s ease';
+                        confetti.style.opacity = '1';
+                        confetti.style.transform = `translate(${Math.random() * 200 - 100}px, ${Math.random() * 200 - 100}px) rotate(${Math.random() * 360}deg)`;
+                        
+                        // Remove confetti after animation
+                        setTimeout(() => {
+                            confetti.style.opacity = '0';
+                            setTimeout(() => confetti.remove(), 1000);
+                        }, 1000);
+                    }, 10);
+                }
+            }
+            
+            // Handle Yes button click
+            yesBtn.addEventListener('click', function() {
+                message.style.display = 'block';
+                createConfetti();
+                
+                // Hide buttons after selection
+                yesBtn.style.display = 'none';
+                noBtn.style.display = 'none';
+            });
+            
+            // Handle No button click - it changes to Yes
+            noBtn.addEventListener('click', function() {
+                // Trigger the Yes button functionality
+                message.style.display = 'block';
+                createConfetti();
+                
+                // Hide buttons after selection
+                yesBtn.style.display = 'none';
+                noBtn.style.display = 'none';
+            });
+            
+            // Make the No button move away when hovered (for fun)
+            noBtn.addEventListener('mouseover', function() {
+                noBtn.style.transform = `translate(${Math.random() * 50 - 25}px, ${Math.random() * 50 - 25}px)`;
+            });
+            
+            noBtn.addEventListener('mouseout', function() {
+                noBtn.style.transform = 'translate(0, 0)';
+            });
+        });
+    </script>
+</body>
+</html>
