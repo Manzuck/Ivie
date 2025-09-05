@@ -13,7 +13,7 @@
         }
         
         body {
-            background: url('amaka.jpg');
+            background: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)), url('amaka.jpg');
             background-size: cover;
             background-position: center;
             background-attachment: fixed;
@@ -27,7 +27,7 @@
         }
         
         .container {
-            background-color: rgba(255, 255, 255, 0.7);
+            background-color: rgba(255, 255, 255, 0.85);
             border-radius: 20px;
             box-shadow: 0 15px 40px rgba(0, 0, 0, 0.2);
             padding: 40px;
@@ -36,15 +36,17 @@
             width: 100%;
             position: relative;
             overflow: hidden;
-            animation: floating 12s ease-in-out infinite;
-            backdrop-filter: blur(8px);
-            border: 1px solid rgba(255, 255, 255, 0.4);
+            animation: float 8s ease-in-out infinite;
+            backdrop-filter: blur(5px);
+            border: 1px solid rgba(255, 255, 255, 0.3);
         }
         
-        @keyframes floating {
-            0% { transform: translate(0, 0px) rotate(0deg); }
-            50% { transform: translate(0, -15px) rotate(0.5deg); }
-            100% { transform: translate(0, 0px) rotate(0deg); }
+        @keyframes float {
+            0% { transform: translate(0, 0) rotate(0deg); }
+            25% { transform: translate(-5px, 8px) rotate(-0.5deg); }
+            50% { transform: translate(3px, -5px) rotate(0.5deg); }
+            75% { transform: translate(7px, 4px) rotate(-0.3deg); }
+            100% { transform: translate(0, 0) rotate(0deg); }
         }
         
         h1 {
@@ -69,7 +71,7 @@
         .question-container {
             margin: 30px 0;
             padding: 20px;
-            background-color: rgba(248, 249, 250, 0.7);
+            background-color: rgba(248, 249, 250, 0.9);
             border-radius: 15px;
             box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
         }
@@ -152,10 +154,10 @@
         .message {
             margin-top: 40px;
             padding: 20px;
-            background-color: rgba(248, 249, 250, 0.7);
+            background-color: rgba(248, 249, 250, 0.9);
             border-radius: 15px;
             display: none;
-            animation: floating 10s ease-in-out infinite;
+            animation: float 6s ease-in-out infinite;
         }
         
         .message h2 {
@@ -180,11 +182,11 @@
         .response-summary {
             margin-top: 30px;
             padding: 20px;
-            background-color: rgba(240, 248, 255, 0.7);
+            background-color: rgba(240, 248, 255, 0.9);
             border-radius: 15px;
             display: none;
             text-align: left;
-            animation: floating 11s ease-in-out infinite;
+            animation: float 7s ease-in-out infinite;
         }
         
         .response-summary h3 {
@@ -203,11 +205,11 @@
         .email-form {
             margin-top: 20px;
             padding: 20px;
-            background-color: rgba(255, 244, 230, 0.7);
+            background-color: rgba(255, 244, 230, 0.9);
             border-radius: 15px;
             display: none;
             text-align: left;
-            animation: floating 9s ease-in-out infinite;
+            animation: float 8s ease-in-out infinite;
         }
         
         .email-form h3 {
@@ -296,6 +298,15 @@
         @media (max-width: 600px) {
             .container {
                 padding: 30px 20px;
+                animation: floatMobile 8s ease-in-out infinite;
+            }
+            
+            @keyframes floatMobile {
+                0% { transform: translate(0, 0) rotate(0deg); }
+                25% { transform: translate(-3px, 5px) rotate(-0.3deg); }
+                50% { transform: translate(2px, -3px) rotate(0.3deg); }
+                75% { transform: translate(4px, 2px) rotate(-0.2deg); }
+                100% { transform: translate(0, 0) rotate(0deg); }
             }
             
             h1 {
@@ -564,7 +575,7 @@
             const body = `${emailBody}%0D%0ASent from: ${userName} (${userEmail})`;
             
             // Open email client
-            window.location.href = `mailto:chinazorogoke@gmail.com?subject=${subject}&body=${body}`;
+            window.location.href = `mailto:your-email@example.com?subject=${subject}&body=${body}`;
             
             // Show success message
             emailStatus.textContent = "Thank you! Your responses have been sent.";
