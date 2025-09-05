@@ -123,21 +123,6 @@
             opacity: 0;
         }
         
-        .instructions {
-            margin-top: 20px;
-            padding: 15px;
-            background-color: #f0f8ff;
-            border-radius: 10px;
-            font-size: 0.9rem;
-            color: #555;
-            text-align: left;
-        }
-        
-        .instructions h3 {
-            margin-bottom: 10px;
-            color: #2196F3;
-        }
-        
         @media (max-width: 600px) {
             .container {
                 padding: 30px 20px;
@@ -170,16 +155,6 @@
         <div id="message" class="message">
             <h2>Yay! You've made me the happiest person! 🎉</h2>
             <p>I promise to always cherish and adore you. Looking forward to creating beautiful memories together!</p>
-        </div>
-        
-        <div class="instructions">
-            <h3>How to Add Your Photo:</h3>
-            <ol>
-                <li>Save this HTML file as "proposal.html"</li>
-                <li>Place your photo file (named "amaka.jpg") in the same folder</li>
-                <li>Open the HTML file in a web browser</li>
-            </ol>
-            <p><strong>Note:</strong> For online sharing, you'll need to upload both files to a web server.</p>
         </div>
     </div>
 
@@ -226,9 +201,6 @@
                 // Hide buttons after selection
                 yesBtn.style.display = 'none';
                 noBtn.style.display = 'none';
-                
-                // Remove instructions
-                document.querySelector('.instructions').style.display = 'none';
             });
             
             // Handle No button click - it changes to Yes
@@ -240,9 +212,6 @@
                 // Hide buttons after selection
                 yesBtn.style.display = 'none';
                 noBtn.style.display = 'none';
-                
-                // Remove instructions
-                document.querySelector('.instructions').style.display = 'none';
             });
             
             // Make the No button move away when hovered (for fun)
