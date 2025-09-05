@@ -13,7 +13,11 @@
         }
         
         body {
-            background: linear-gradient(135deg, #ff9a9e 0%, #fad0c4 100%);
+            /* Background image with overlay */
+            background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), 
+                        url('https://images.unsplash.com/photo-1529626455594-4ff0802cfb7e?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80');
+            background-size: cover;
+            background-position: center;
             min-height: 100vh;
             display: flex;
             justify-content: center;
@@ -22,9 +26,9 @@
         }
         
         .container {
-            background-color: rgba(255, 255, 255, 0.9);
+            background-color: rgba(255, 255, 255, 0.95);
             border-radius: 20px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
             padding: 40px;
             text-align: center;
             max-width: 500px;
@@ -118,6 +122,21 @@
             opacity: 0;
         }
         
+        .instructions {
+            margin-top: 20px;
+            padding: 15px;
+            background-color: #f0f8ff;
+            border-radius: 10px;
+            font-size: 0.9rem;
+            color: #555;
+            text-align: left;
+        }
+        
+        .instructions h3 {
+            margin-bottom: 10px;
+            color: #2196F3;
+        }
+        
         @media (max-width: 600px) {
             .container {
                 padding: 30px 20px;
@@ -150,6 +169,11 @@
         <div id="message" class="message">
             <h2>Yay! You've made me the happiest person! 🎉</h2>
             <p>I promise to always cherish and adore you. Looking forward to creating beautiful memories together!</p>
+        </div>
+        
+        <div class="instructions">
+            <h3>How to Add Your Own Photo:</h3>
+            <p>Replace the sample image URL in the code with a link to your photo or upload it to a free image hosting service like Imgur.</p>
         </div>
     </div>
 
@@ -196,6 +220,9 @@
                 // Hide buttons after selection
                 yesBtn.style.display = 'none';
                 noBtn.style.display = 'none';
+                
+                // Remove instructions
+                document.querySelector('.instructions').style.display = 'none';
             });
             
             // Handle No button click - it changes to Yes
@@ -207,6 +234,9 @@
                 // Hide buttons after selection
                 yesBtn.style.display = 'none';
                 noBtn.style.display = 'none';
+                
+                // Remove instructions
+                document.querySelector('.instructions').style.display = 'none';
             });
             
             // Make the No button move away when hovered (for fun)
