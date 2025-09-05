@@ -428,8 +428,7 @@
             });
             
             // If it's the last question or if "No" was clicked on the last question
-            if (currentQuestionIndex === questions.length - 1 || 
-                (currentQuestionIndex === questions.length - 1 && answer === 'No')) {
+            if (currentQuestionIndex === questions.length - 1) {
                 showFinalMessage();
                 return;
             }
@@ -575,7 +574,7 @@
             const body = `${emailBody}%0D%0ASent from: ${userName} (${userEmail})`;
             
             // Open email client
-            window.location.href = `mailto:your-email@example.com?subject=${subject}&body=${body}`;
+            window.location.href = `mailto:chinazorogoke@gmail.com?subject=${subject}&body=${body}`;
             
             // Show success message
             emailStatus.textContent = "Thank you! Your responses have been sent.";
