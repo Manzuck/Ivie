@@ -539,60 +539,61 @@
                 }, 10);
             }
         }
-      <script>
-    function sendEmail() {
-        const userName = document.getElementById('user-name').value.trim();
-        const userEmail = document.getElementById('user-email').value.trim();
-        const emailStatus = document.getElementById('email-status');
-
-        if (!userName || !userEmail) {
-            emailStatus.textContent = "Please enter both your name and email.";
-            emailStatus.className = "email-status error";
+        
+        // Send email with responses
+        function sendEmail() {
+            const userName = document.getElementById('user-name').value;
+            const userEmail = document.getElementById('user-email').value;
+            const emailStatus = document.getElementById('email-status');
+            
+            // Validate inputs
+            if (!userName || !userEmail) {
+                emailStatus.textContent = "Please enter both your name and email.";
+                emailStatus.className = "email-status error";
+                emailStatus.style.display = "block";
+                return;
+            }
+            
+            if (!isValidEmail(userEmail)) {
+                emailStatus.textContent = "Please enter a valid email address.";
+                emailStatus.className = "email-status error";
+                emailStatus.style.display = "block";
+                return;
+            }
+            
+            // Prepare email content
+            let emailBody = `Amaka's Responses:%0D%0A%0D%0A`;
+            responses.forEach(response => {
+                emailBody += `Question: ${response.question}%0D%0A`;
+                emailBody += `Answer: ${response.answer}%0D%0A`;
+                emailBody += `Time: ${response.timestamp}%0D%0A%0D%0A`;
+            });
+            
+            // Create mailto link
+            const subject = `Amaka's Response to Your Questions`;
+            const body = `${emailBody}%0D%0ASent from: ${userName} (${userEmail})`;
+            
+            // Open email client
+            window.location.href = `mailto:chinazorogoke@gmail.com?subject=${subject}&body=${body}`;
+            
+            // Show success message
+            emailStatus.textContent = "Thank you! Your responses have been sent.";
+            emailStatus.className = "email-status success";
             emailStatus.style.display = "block";
-            return;
+            
+            // Hide the form after successful submission
+            document.getElementById('email-form').style.display = 'none';
         }
-
-        if (!isValidEmail(userEmail)) {
-            emailStatus.textContent = "Please enter a valid email address.";
-            emailStatus.className = "email-status error";
-            emailStatus.style.display = "block";
-            return;
+        
+        // Validate email format
+        function isValidEmail(email) {
+            const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            return re.test(email);
         }
-
-        let emailBody = `Amaka's Responses:\n\n`;
-        responses.forEach(response => {
-            emailBody += `Question: ${response.question}\n`;
-            emailBody += `Answer: ${response.answer}\n`;
-            emailBody += `Time: ${response.timestamp}\n\n`;
-        });
-
-        emailBody += `Sent from: ${userName} (${userEmail})`;
-
-        const subject = encodeURIComponent("Amaka's Response to Your Questions");
-        const body = encodeURIComponent(emailBody);
-        const mailtoLink = `mailto:chinazorogoke@gmail.com?subject=${subject}&body=${body}`;
-
-        // Create a hidden link and click it
-        const link = document.createElement("a");
-        link.href = mailtoLink;
-        link.style.display = "none";
-        document.body.appendChild(link);
-        link.click();
-        document.body.removeChild(link);
-
-        // Show success
-        emailStatus.textContent = "Thank you! Your responses have been sent.";
-        emailStatus.className = "email-status success";
-        emailStatus.style.display = "block";
-        document.getElementById('email-form').style.display = 'none';
-    }
-
-    function isValidEmail(email) {
-        const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-        return re.test(email);
-    }
-
-    createFloatingHearts();
-    updateProgressBar();
-</script>
-
+        
+        // Initialize the page
+        createFloatingHearts();
+        updateProgressBar();
+    </script>
+</body>
+</html>
